@@ -1,17 +1,16 @@
----
-output: github_document
----
+
 # **Introduction**
 
-Dear colleague, below is the step-by-step for you to reproduce these results
+Dear colleague, below is the step-by-step for you to reproduce these
+results
 
 ## **downloding the data**
 
+the format of the Brazilian government’s query:
+`http://compras.dados.gov.br/fornecedores/v1/fornecedores.{formato}?{parametro1=valor1}&{parametro2=valor2}&{parametroN=valorN}`,
+you can change and add more parameters
 
-the format of the Brazilian government's query:  `http://compras.dados.gov.br/fornecedores/v1/fornecedores.{formato}?{parametro1=valor1}&{parametro2=valor2}&{parametroN=valorN}`, you can change and add more parameters
-
-
-```{r}
+``` r
 suppliers_cnaes <- c('1011201','1011205','1013901','1013902') # you can changes this suppliers if you want
 
 for(i in seq_along(suppliers_cnaes)){
@@ -30,15 +29,11 @@ for(i in seq_along(suppliers_cnaes)){
       break
   }
   }
-
 ```
-
-
 
 ## **Processing and visualization**
 
-```{r}
-
+``` r
 file_names <- list.files('data-raw/')
 
 for( i in seq_along(file_names)){
@@ -68,6 +63,6 @@ df |>
   ggplot2::ggplot(ggplot2::aes(x= uf))+
   ggplot2::geom_bar()+
   ggplot2::facet_wrap(~cnae_name, scales = 'free')
-
 ```
 
+![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
