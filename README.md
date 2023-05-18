@@ -60,9 +60,10 @@ df |>
     id,cnpj,uf,municipio_cod,municipio_name,cnae_cod,cnae_name,nome
   ) |> 
   dplyr::group_by(uf,cnae_name) |> 
-  ggplot2::ggplot(ggplot2::aes(x= uf))+
-  ggplot2::geom_bar()+
-  ggplot2::facet_wrap(~cnae_name, scales = 'free')
+  ggplot2::ggplot(ggplot2::aes(x= uf, group=cnae_cod,fill=as.character(cnae_cod)))+
+  ggplot2::geom_bar(position = 'dodge')+
+  ggplot2::labs(fill='CNAE')+
+  ggplot2::theme_bw()
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
